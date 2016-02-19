@@ -1,0 +1,6 @@
+@import "./variable";
+@import "./mixin";
+body {
+  background-color: $bg_color;
+}
+

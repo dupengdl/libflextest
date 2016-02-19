@@ -1,0 +1,10 @@
+# Files to ignore
+*.DS_store
+npm-debug.log
+
+
+# Folders to ignore
+node_modules/
+.sass-cache/
+.idea/
+static/
