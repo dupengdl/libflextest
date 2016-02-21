@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
+var px2rem = require('postcss-px2rem');
 var env = process.env.NODE_ENV;
 
 var config = {
@@ -44,7 +45,7 @@ var config = {
   sassLoader: {
     includePaths: [path.resolve(__dirname, './src/sass'), path.resolve(__dirname, './node_modules')]
   },
-  postcss: [autoprefixer({browsers: ['last 2 versions']})],
+  postcss: [autoprefixer({browsers: ['last 2 versions']}), px2rem({remUnit: 75})],
   resolve: {
     extensions: ['', '.js']
   }
