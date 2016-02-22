@@ -33,12 +33,12 @@ var config = {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
           //'image?{bypassOnDebug: true, progressive:true, optimizationLevel: 3, pngquant:{quality: "65-80"}}',
-          'url?limit=10000&name=images/[name].[chunkhash:8].[ext]'
+          'url?limit=10000&name=image/[name].[hash:8].[ext]'
         ]
       },
       {
         test: /\.(woff|eot|ttf)$/i,
-        loader: 'url?limit=10000&name=fonts/[name].[chunkhash:8].[ext]'
+        loader: 'url?limit=10000&name=font/[name].[hash:8].[ext]'
       }
     ]
   },
