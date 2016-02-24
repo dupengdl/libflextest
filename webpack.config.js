@@ -2,10 +2,11 @@ var path = require('path');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
 var px2rem = require('postcss-px2rem');
+var _ = require('lodash');
 var env = process.env.NODE_ENV;
 
 var config = {
-  devtool: 'eval',
+  devtool: 'inline-source-map',
   entry: {
     'index': './src/js/index.js',
     'lib-flex': './src/js/lib-flex.js'
@@ -53,22 +54,21 @@ var config = {
 
 /* production config */
 if (env === 'production') {
-  config.output = {
-    path: './static/',
-        filename: '[name].[chunkhash:8].js',
-        publicPath: '/static/'
-  };
-  config.plugins = [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    })
-  ];
-} else {
-  config.plugins = [
-    new webpack.HotModuleReplacementPlugin()
-  ];
+  config = _.extend(config, {
+    devtool: '#',
+    output: {
+      path: './static/',
+      filename: '[name].[chunkhash:8].js',
+      publicPath: '/static/'
+    },
+    plugins: [
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false
+        }
+      })
+    ]
+  });
 }
 
 module.exports = config;
