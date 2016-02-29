@@ -2,7 +2,6 @@ var path = require('path');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
 var px2rem = require('postcss-px2rem');
-var _ = require('lodash');
 var env = process.env.NODE_ENV;
 
 var config = {
@@ -54,7 +53,7 @@ var config = {
 
 /* production config */
 if (env === 'production') {
-  config = _.extend(config, {
+  config = Object.assign(config, {
     devtool: '#',
     output: {
       path: './static/',
@@ -67,6 +66,12 @@ if (env === 'production') {
           warnings: false
         }
       })
+    ]
+  });
+} else {
+  config = Object.assign(config, {
+    plugins: [
+      new webpack.HotModuleReplacementPlugin()
     ]
   });
 }
